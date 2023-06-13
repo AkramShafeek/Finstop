@@ -19,6 +19,7 @@ const corsOriginsProduction = [];
 
 // routers
 const userRouter = require('./routes/userRoutes');
+const trackRouter = require('./routes/trackRoutes');
 
 // error handler middlewares
 const errorHandlerMiddleware = require('./middleware/errorHandler');
@@ -31,6 +32,8 @@ app.use('/public/error404/',express.static(path.join(__dirname,'public/error404'
 
 // user routes
 app.use('/api/v1/user/', userRouter);
+// track routes
+app.use('/api/v1/track/', trackRouter);
 
 // error handlers
 app.use(errorHandlerMiddleware);

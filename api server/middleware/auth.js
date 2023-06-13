@@ -17,6 +17,8 @@ const authenticationMiddleware = async (req, res, next) => {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = await User.findById(decoded.id).select("-password");
+        if(!req.user)
+            throw new Error("Not a real user or user doesn't exist");
         next();
     } catch (error) {
         throw new Error('Not authorized to access this route');
