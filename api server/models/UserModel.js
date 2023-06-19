@@ -28,7 +28,7 @@ const userModel = new mongoose.Schema({
 userModel.pre('save', async function (next) {
     console.log("pre middleware fired");
     if (!this.isModified) {
-        next();
+        return next();
     }
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
